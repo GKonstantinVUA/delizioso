@@ -1854,11 +1854,11 @@
         da.init();
         //!----------------------
         document.addEventListener("DOMContentLoaded", (function() {
-            const inputField = document.getElementById("time-book-table");
-            const timePicker = document.getElementById("time-picker");
+            const inputField = document.getElementById("timeBookTable");
+            const timePicker = document.getElementById("fieldsTimeBookTable");
             const timeWrapper = document.querySelector(".form-page__input-wrap--time");
-            const setTimeBtn = document.getElementById("set-time-btn");
-            const cancelTimeBtn = document.getElementById("cancel-time-btn");
+            const setTimeBtn = document.getElementById("setTimeBtn");
+            const cancelTimeBtn = document.getElementById("cancelTimeBtn");
             timePicker.style.display = "none";
             inputField.addEventListener("focus", (function() {
                 const rect = inputField.getBoundingClientRect();
@@ -1870,40 +1870,53 @@
             document.addEventListener("click", (function(event) {
                 if (!timePicker.contains(event.target) && event.target !== inputField) timePicker.style.display = "none";
             }));
+            function isValidTime(time) {
+                const [hours, minutesAndAmpm] = time.split(":");
+                const [minutes, ampm] = minutesAndAmpm.split(" ");
+                const hoursNum = parseInt(hours);
+                const minutesNum = parseInt(minutes);
+                if (ampm === "AM") return hoursNum >= 9 && hoursNum <= 11 && minutesNum >= 0 && minutesNum < 60; else if (ampm === "PM") return hoursNum >= 12 && hoursNum <= 6 && minutesNum >= 0 && minutesNum < 60;
+                return false;
+            }
+            function checkInputs() {
+                if (inputField.value.trim() === "") inputField.classList.add("error"); else inputField.classList.remove("error");
+            }
             function setTime(event) {
                 event.preventDefault();
-                setTimeout((function() {
-                    const hours = document.getElementById("hours").value;
-                    const minutes = document.getElementById("minutes").value;
-                    const ampm = document.getElementById("ampm").value;
-                    inputField.value = hours + ":" + minutes + " " + ampm;
-                    timePicker.style.display = "none";
-                }), 100);
+                const hours = document.getElementById("hours").value;
+                const minutes = document.getElementById("minutes").value;
+                const ampm = document.getElementById("ampm").value;
+                const selectedTime = `${hours}:${minutes} ${ampm}`;
+                inputField.value = selectedTime;
+                timePicker.style.display = "none";
+                if (isValidTime(selectedTime)) inputField.classList.remove("error"); else inputField.classList.add("error");
+                checkInputs();
             }
             function cancelTime(event) {
                 event.preventDefault();
                 inputField.value = "";
                 timePicker.style.display = "none";
+                checkInputs();
             }
             setTimeBtn.addEventListener("click", setTime);
             cancelTimeBtn.addEventListener("click", cancelTime);
         }));
         //!--------------------------------------------------------------
                 document.addEventListener("DOMContentLoaded", (function() {
-            const accasionInput = document.getElementById("accasion-input-label");
-            const accasionSelect = document.getElementById("data-order-accasion");
-            const accasionOptionsBox = document.getElementById("accasion-options");
-            Array.from(accasionSelect.options).forEach((option => {
-                const li = document.createElement("li");
-                li.textContent = option.textContent;
-                li.dataset.value = option.value;
-                accasionOptionsBox.appendChild(li);
+            const accasionInputPopupreserv = document.getElementById("accasionInputOptional");
+            const accasionSelectPopupreserv = document.getElementById("dataOrderAccasion");
+            const accasionOptionsBoxPopupreserv = document.getElementById("accasionFantomList");
+            Array.from(accasionSelectPopupreserv.options).forEach((option => {
+                const liPopupreserv = document.createElement("li");
+                liPopupreserv.textContent = option.textContent;
+                liPopupreserv.dataset.value = option.value;
+                accasionOptionsBoxPopupreserv.appendChild(liPopupreserv);
             }));
-            accasionInput.addEventListener("click", (function() {
-                accasionOptionsBox.classList.toggle("show");
+            accasionInputPopupreserv.addEventListener("click", (function() {
+                accasionOptionsBoxPopupreserv.classList.toggle("show");
             }));
             function updateSelectStyles(selectedValue) {
-                Array.from(accasionSelect.options).forEach((option => {
+                Array.from(accasionSelectPopupreserv.options).forEach((option => {
                     if (option.value === selectedValue) {
                         option.setAttribute("selected", "true");
                         option.style.fontWeight = "bold";
@@ -1913,44 +1926,44 @@
                     }
                 }));
             }
-            accasionOptionsBox.addEventListener("click", (function(e) {
-                const selectedOption = e.target;
-                const selectedValue = selectedOption.dataset.value;
-                const selectedText = selectedOption.textContent;
-                if (selectedValue === "none-value") {
-                    accasionInput.value = "";
-                    accasionInput.placeholder = "Select an occasion (optional)";
+            accasionOptionsBoxPopupreserv.addEventListener("click", (function(e) {
+                const selectedOptionPopupreserv = e.target;
+                const selectedValuePopupreserv = selectedOptionPopupreserv.dataset.value;
+                const selectedTextPopupreserv = selectedOptionPopupreserv.textContent;
+                if (selectedValuePopupreserv === "none-value") {
+                    accasionInputPopupreserv.value = "";
+                    accasionInputPopupreserv.placeholder = "Select an occasion (optional)";
                 } else {
-                    accasionInput.value = selectedText;
-                    accasionInput.placeholder = "";
+                    accasionInputPopupreserv.value = selectedTextPopupreserv;
+                    accasionInputPopupreserv.placeholder = "";
                 }
-                updateSelectStyles(selectedValue);
-                accasionOptionsBox.classList.remove("show");
+                updateSelectStyles(selectedValuePopupreserv);
+                accasionOptionsBoxPopupreserv.classList.remove("show");
             }));
             document.addEventListener("click", (function(event) {
-                if (!accasionInput.contains(event.target) && !accasionOptionsBox.contains(event.target)) accasionOptionsBox.classList.remove("show");
+                if (!accasionInputPopupreserv.contains(event.target) && !accasionOptionsBoxPopupreserv.contains(event.target)) accasionOptionsBoxPopupreserv.classList.remove("show");
             }));
             window.addEventListener("load", (function() {
-                const selectedValue = accasionSelect.value;
-                updateSelectStyles(selectedValue);
+                const selectedValuePopupreserv = accasionSelectPopupreserv.value;
+                updateSelectStyles(selectedValuePopupreserv);
             }));
         }));
         //!--------------------------------------------------------------
                 document.addEventListener("DOMContentLoaded", (function() {
-            const accasionInput = document.getElementById("confirmatiom-input-label");
-            const accasionSelect = document.getElementById("request-fr-confirmatiom");
-            const accasionOptionsBox = document.getElementById("confirmatiom-options");
-            Array.from(accasionSelect.options).forEach((option => {
-                const li = document.createElement("li");
-                li.textContent = option.textContent;
-                li.dataset.value = option.value;
-                accasionOptionsBox.appendChild(li);
+            const accasionInputConfirmation = document.getElementById("confirmatiomInputLabel");
+            const accasionSelectConfirmation = document.getElementById("requestFrConfirmatiom");
+            const accasionOptionsBoxConfirmation = document.getElementById("confirmatiomListOptions");
+            Array.from(accasionSelectConfirmation.options).forEach((option => {
+                const liConfirmation = document.createElement("li");
+                liConfirmation.textContent = option.textContent;
+                liConfirmation.dataset.value = option.value;
+                accasionOptionsBoxConfirmation.appendChild(liConfirmation);
             }));
-            accasionInput.addEventListener("click", (function() {
-                accasionOptionsBox.classList.toggle("show");
+            accasionInputConfirmation.addEventListener("click", (function() {
+                accasionOptionsBoxConfirmation.classList.toggle("show");
             }));
             function updateSelectStyles(selectedValue) {
-                Array.from(accasionSelect.options).forEach((option => {
+                Array.from(accasionSelectConfirmation.options).forEach((option => {
                     if (option.value === selectedValue) {
                         option.setAttribute("selected", "true");
                         option.style.fontWeight = "bold";
@@ -1960,26 +1973,26 @@
                     }
                 }));
             }
-            accasionOptionsBox.addEventListener("click", (function(e) {
-                const selectedOption = e.target;
-                const selectedValue = selectedOption.dataset.value;
-                const selectedText = selectedOption.textContent;
-                if (selectedValue === "none-value") {
-                    accasionInput.value = "";
-                    accasionInput.placeholder = "Select an occasion (optional)";
+            accasionOptionsBoxConfirmation.addEventListener("click", (function(e) {
+                const selectedOptionConfirmation = e.target;
+                const selectedValueConfirmation = selectedOptionConfirmation.dataset.value;
+                const selectedTextConfirmation = selectedOptionConfirmation.textContent;
+                if (selectedValueConfirmation === "none-value") {
+                    accasionInputConfirmation.value = "";
+                    accasionInputConfirmation.placeholder = "Select an occasion (optional)";
                 } else {
-                    accasionInput.value = selectedText;
-                    accasionInput.placeholder = "";
+                    accasionInputConfirmation.value = selectedTextConfirmation;
+                    accasionInputConfirmation.placeholder = "";
                 }
-                updateSelectStyles(selectedValue);
-                accasionOptionsBox.classList.remove("show");
+                updateSelectStyles(selectedValueConfirmation);
+                accasionOptionsBoxConfirmation.classList.remove("show");
             }));
             document.addEventListener("click", (function(event) {
-                if (!accasionInput.contains(event.target) && !accasionOptionsBox.contains(event.target)) accasionOptionsBox.classList.remove("show");
+                if (!accasionInputConfirmation.contains(event.target) && !accasionOptionsBoxConfirmation.contains(event.target)) accasionOptionsBoxConfirmation.classList.remove("show");
             }));
             window.addEventListener("load", (function() {
-                const selectedValue = accasionSelect.value;
-                updateSelectStyles(selectedValue);
+                const selectedValueConfirmation = accasionSelectConfirmation.value;
+                updateSelectStyles(selectedValueConfirmation);
             }));
         }));
         //!----------------------------------------------------------
@@ -1998,7 +2011,8 @@
                 }
             }));
         }));
-        document.addEventListener("DOMContentLoaded", (function() {
+        //!---------------------------------------------------------------
+                document.addEventListener("DOMContentLoaded", (function() {
             const passwordInput = document.getElementById("password-sign-up");
             const visibleInput = document.getElementById("password-visible-sign-up");
             visibleInput.addEventListener("input", (function(e) {
@@ -2027,6 +2041,278 @@
         };
         document.addEventListener("DOMContentLoaded", (() => {
             menu.initMenuPopreserv();
+        }));
+        //!---------------------------------------------------------------
+                const menuConfirmation = {
+            initMenuPopreserv: function() {
+                const reservationBtnConfirmation = document.querySelector(".box-form__confirm-button");
+                if (reservationBtnConfirmation) reservationBtnConfirmation.addEventListener("click", this.handleRreservationBtnConfirmationClick);
+                const menuIconConfirmation = document.querySelector(".popup-menu__icon");
+                if (menuIconConfirmation) menuIconConfirmation.addEventListener("click", (() => this.toggleMenu()));
+            },
+            toggleMenu: function() {
+                document.documentElement.classList.toggle("menu-open-reserv");
+            }
+        };
+        document.addEventListener("DOMContentLoaded", (() => {
+            menuConfirmation.initMenuPopreserv();
+        }));
+        //!---------------------------------------------------------------
+                const menuCancel = {
+            initMenuPopreserv: function() {
+                const reservationBtnCancel = document.querySelector(".btn-solution__apply--cancel");
+                if (reservationBtnCancel) reservationBtnCancel.addEventListener("click", this.handleReservationBtnCancelClick);
+                const menuIconCancel = document.querySelector(".popup-menu__icon-cancel");
+                if (menuIconCancel) menuIconCancel.addEventListener("click", (() => this.toggleMenu()));
+            },
+            toggleMenu: function() {
+                document.documentElement.classList.toggle("menu-open-reserv");
+            }
+        };
+        document.addEventListener("DOMContentLoaded", (() => {
+            menuCancel.initMenuPopreserv();
+        }));
+        document.addEventListener("DOMContentLoaded", (function() {
+            function generateRandomNumber() {
+                return "#" + Math.floor(Math.random() * 1e6).toString().padStart(6, "0");
+            }
+            const dateInput = document.getElementById("dateBookTable");
+            const timeInput = document.getElementById("timeBookTable");
+            const partySizeInput = document.getElementById("partySizeBookTable");
+            const btnBook = document.getElementById("btnBookATable");
+            const timePicker = document.getElementById("fieldsTimeBookTable");
+            const setTimeBtn = document.getElementById("setTimeBtn");
+            const cancelTimeBtn = document.getElementById("cancelTimeBtn");
+            const hoursSelect = document.getElementById("hours");
+            const minutesSelect = document.getElementById("minutes");
+            const ampmSelect = document.getElementById("ampm");
+            btnBook.disabled = true;
+            btnBook.classList.add("disabled-btn");
+            timePicker.style.display = "none";
+            function isValidTime(time) {
+                const [hours, minutes] = time.split(":").map(Number);
+                if (hours >= 9 && hours <= 18) if (minutes >= 0 && minutes < 60) return true;
+                return false;
+            }
+            function checkInputs() {
+                console.log("Date:", dateInput.value);
+                console.log("Time:", timeInput.value);
+                console.log("Party Size:", partySizeInput.value);
+                if (dateInput.value.trim() !== "" && timeInput.value.trim() !== "" && partySizeInput.value.trim() !== "") {
+                    btnBook.disabled = false;
+                    btnBook.classList.remove("disabled-btn");
+                } else {
+                    btnBook.disabled = true;
+                    btnBook.classList.add("disabled-btn");
+                }
+            }
+            function updatePartySizeMessage() {
+                const partySize = parseInt(partySizeInput.value.replace(/\D+/g, ""), 10);
+                let message = "";
+                let partySizeText = partySizeInput.value.replace(/\D+/g, "");
+                if (!isNaN(partySize) && partySize >= 1 && partySize <= 100) {
+                    if (partySize === 1) message = "people (Single seedlings)"; else if (partySize >= 2 && partySize <= 4) message = "people (Standard seating)"; else if (partySize >= 5 && partySize <= 10) message = "people (Extended seating)"; else if (partySize >= 11 && partySize <= 50) message = "people (Corporate seating)"; else if (partySize >= 51 && partySize <= 100) message = "people (Clarify with the administrator)";
+                    partySizeInput.selectionStart;
+                    partySizeInput.value = `${partySizeText} ${message}`.trim();
+                    partySizeInput.classList.add("party-size-message");
+                    partySizeInput.setSelectionRange(partySizeText.length, partySizeText.length);
+                    partySizeInput.classList.remove("error");
+                    partySizeInput.classList.remove("fatal");
+                } else if (partySize > 100) {
+                    partySizeInput.value = "";
+                    partySizeInput.placeholder = "The maximum number of people is 100";
+                    partySizeInput.classList.add("fatal");
+                    partySizeInput.classList.remove("error");
+                } else {
+                    partySizeInput.value = "";
+                    partySizeInput.placeholder = "Enter the number of guests from 1 to 100";
+                    partySizeInput.classList.add("error");
+                    partySizeInput.classList.remove("fatal");
+                }
+            }
+            partySizeInput.addEventListener("input", (function() {
+                const partySize = parseInt(partySizeInput.value.replace(/\D+/g, ""), 10);
+                if (partySize > 100) {
+                    partySizeInput.value = "";
+                    partySizeInput.placeholder = "The maximum number of people is 100";
+                    partySizeInput.classList.add("fatal");
+                    partySizeInput.classList.remove("error");
+                } else {
+                    updatePartySizeMessage();
+                    checkInputs();
+                }
+            }));
+            timeInput.addEventListener("focus", (function() {
+                timePicker.style.display = "block";
+            }));
+            document.addEventListener("click", (function(event) {
+                if (!timePicker.contains(event.target) && event.target !== timeInput) timePicker.style.display = "none";
+            }));
+            setTimeBtn.addEventListener("click", (function(event) {
+                event.preventDefault();
+                const selectedTime = `${hoursSelect.value}:${minutesSelect.value} ${ampmSelect.value}`;
+                if (isValidTime(selectedTime)) {
+                    timeInput.value = selectedTime;
+                    timePicker.style.display = "none";
+                    timeInput.classList.remove("error");
+                    checkInputs();
+                } else timeInput.classList.add("error");
+            }));
+            cancelTimeBtn.addEventListener("click", (function(event) {
+                event.preventDefault();
+                timeInput.value = "";
+                timePicker.style.display = "none";
+                timeInput.classList.remove("error");
+            }));
+            dateInput.addEventListener("change", checkInputs);
+            timeInput.addEventListener("change", checkInputs);
+            partySizeInput.addEventListener("change", checkInputs);
+            btnBook.addEventListener("click", (function() {
+                if (btnBook.disabled) return;
+                const dateValue = dateInput.value;
+                const timeValue = timeInput.value;
+                const partySizeValue = partySizeInput.value;
+                const dateOrderReservation = document.getElementById("dateOrderReservation");
+                const timeOrderReservation = document.getElementById("timeOrderReservation");
+                const dataOrderPartySize = document.getElementById("dataOrderPartySize");
+                if (dateOrderReservation) dateOrderReservation.textContent = dateValue;
+                if (timeOrderReservation) timeOrderReservation.textContent = timeValue;
+                if (dataOrderPartySize) dataOrderPartySize.textContent = partySizeValue;
+                const blDeskDateConfirmation = document.getElementById("blDeskDateConfirmation");
+                const blDeskTimeConfirmation = document.getElementById("blDeskTimeConfirmation");
+                const blDeskPartyConfirmation = document.getElementById("blDeskPartyConfirmation");
+                const numberIdOrderConfirmation = document.getElementById("numberIdOrderConfirmation");
+                if (blDeskDateConfirmation) blDeskDateConfirmation.textContent = dateValue;
+                if (blDeskTimeConfirmation) blDeskTimeConfirmation.textContent = timeValue;
+                if (blDeskPartyConfirmation) blDeskPartyConfirmation.textContent = partySizeValue;
+                const randomNumber = generateRandomNumber();
+                if (numberIdOrderConfirmation) numberIdOrderConfirmation.textContent = randomNumber;
+                const blDeskDateCancel = document.getElementById("blDeskDateCancel");
+                const blDeskTimeCancel = document.getElementById("blDeskTimeCancel");
+                const blDeskPartyCancel = document.getElementById("blDeskPartyCancel");
+                const numberIdOrderCancel = document.getElementById("numberIdOrderCancel");
+                if (blDeskDateCancel) blDeskDateCancel.textContent = dateValue;
+                if (blDeskTimeCancel) blDeskTimeCancel.textContent = timeValue;
+                if (blDeskPartyCancel) blDeskPartyCancel.textContent = partySizeValue;
+                if (numberIdOrderCancel) numberIdOrderCancel.textContent = randomNumber;
+                const popupSelector = btnBook.getAttribute("data-popup");
+                if (popupSelector) {
+                    const popup = document.querySelector(popupSelector);
+                    if (popup) popup.style.display = "block";
+                }
+            }));
+        }));
+        function initPopupForm() {
+            const firstName = document.getElementById("dataOrderFirstName");
+            const firstNameError = document.querySelector(".data-order__first-name-error");
+            const lastName = document.getElementById("dataOrderLastName");
+            const lastNameError = document.querySelector(".data-order__last-name-error");
+            const phone = document.getElementById("dataOrderPhone");
+            const email = document.getElementById("dataOrderMail");
+            const emailError = document.querySelector(".data-order__mail-error");
+            const occasionInput = document.getElementById("accasionInputOptional");
+            const occasionSelect = document.getElementById("dataOrderAccasion");
+            const radioButtons = document.querySelectorAll("#boxFormRadioBtn input[type='radio']");
+            const confirmButton = document.getElementById("buttonConfirmReservationInForm");
+            const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+            const phoneRegex = /^\+?[0-9\s\-()]{7,15}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            function validateField(field, regex) {
+                return regex.test(field.value.trim());
+            }
+            function validateFirstName() {
+                if (firstName.value.trim() === "") {
+                    firstNameError.style.display = "none";
+                    firstName.classList.remove("active-first-name-error");
+                } else if (!validateField(firstName, nameRegex)) {
+                    firstNameError.style.display = "block";
+                    firstName.classList.add("active-first-name-error");
+                } else {
+                    firstNameError.style.display = "none";
+                    firstName.classList.remove("active-first-name-error");
+                }
+            }
+            function validateLastName() {
+                if (lastName.value.trim() === "") {
+                    lastNameError.style.display = "none";
+                    lastName.classList.remove("active-last-name-error");
+                } else if (!validateField(lastName, nameRegex)) {
+                    lastNameError.style.display = "block";
+                    lastName.classList.add("active-last-name-error");
+                } else {
+                    lastNameError.style.display = "none";
+                    lastName.classList.remove("active-last-name-error");
+                }
+            }
+            function validateEmail() {
+                if (email.value.trim() === "") {
+                    emailError.style.display = "none";
+                    email.classList.remove("active-mail-error");
+                } else if (!validateField(email, emailRegex)) {
+                    emailError.style.display = "block";
+                    email.classList.add("active-mail-error");
+                } else {
+                    emailError.style.display = "none";
+                    email.classList.remove("active-mail-error");
+                }
+            }
+            function checkEmailOnInput() {
+                if (validateField(email, emailRegex)) {
+                    emailError.style.display = "none";
+                    email.classList.remove("active-mail-error");
+                }
+                validateForm();
+            }
+            function validateForm() {
+                const isFirstNameValid = validateField(firstName, nameRegex);
+                const isLastNameValid = validateField(lastName, nameRegex);
+                const isPhoneValid = validateField(phone, phoneRegex);
+                const isEmailValid = validateField(email, emailRegex);
+                const isOccasionSelected = occasionInput.value.trim() !== "" && occasionSelect.value !== "none-value";
+                const isRadioSelected = Array.from(radioButtons).some((radio => radio.checked));
+                if (isFirstNameValid && isLastNameValid && isPhoneValid && isEmailValid && isOccasionSelected && isRadioSelected) {
+                    confirmButton.disabled = false;
+                    confirmButton.classList.remove("inactive-button");
+                } else {
+                    confirmButton.disabled = true;
+                    confirmButton.classList.add("inactive-button");
+                }
+            }
+            const accasionFantomList = document.getElementById("accasionFantomList");
+            accasionFantomList.addEventListener("click", (function(event) {
+                const selectedOption = event.target;
+                if (selectedOption.classList.contains("data-order__option")) {
+                    occasionInput.value = selectedOption.textContent;
+                    occasionSelect.value = selectedOption.getAttribute("value");
+                    if (occasionSelect.value === "none-value") {
+                        confirmButton.disabled = true;
+                        confirmButton.classList.add("inactive-button");
+                    }
+                }
+                validateForm();
+            }));
+            firstName.addEventListener("input", (function() {
+                validateFirstName();
+                validateForm();
+            }));
+            firstName.addEventListener("blur", validateFirstName);
+            lastName.addEventListener("input", (function() {
+                validateLastName();
+                validateForm();
+            }));
+            lastName.addEventListener("blur", validateLastName);
+            phone.addEventListener("input", validateForm);
+            email.addEventListener("blur", (function() {
+                validateEmail();
+                validateForm();
+            }));
+            email.addEventListener("input", checkEmailOnInput);
+            radioButtons.forEach((radio => radio.addEventListener("change", validateForm)));
+            confirmButton.disabled = true;
+            confirmButton.classList.add("inactive-button");
+        }
+        document.addEventListener("DOMContentLoaded", (function() {
+            initPopupForm();
         }));
         window["FLS"] = false;
         menuInit();
