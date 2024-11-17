@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Delizioso</title>
+	<script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6?_v=20241117185013">
+	</script>
+
+
+	<script>
+		(g => {
+			var h, a, k, p = "The Google Maps JavaScript API",
+				c = "google",
+				l = "importLibrary",
+				q = "__ib__",
+				m = document,
+				b = window;
+			b = b[c] || (b[c] = {});
+			var d = b.maps || (b.maps = {}),
+				r = new Set,
+				e = new URLSearchParams,
+				u = () => h || (h = new Promise(async (f, n) => {
+					await (a = m.createElement("script"));
+					e.set("language", "en");
+					e.set("libraries", [...r] + "");
+					for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+					e.set("callback", c + ".maps." + q);
+					a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+					d[q] = f;
+					a.onerror = () => h = n(Error(p + " could not load."));
+					a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+					m.head.append(a)
+				}));
+			d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+		})({
+			key: "AIzaSyCiZVu7tK48b6fDBrz2Q_JDNaK3Xq76GPI",
+			v: "weekly",
+			// Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+			// Add other bootstrap parameters as needed, using camel case.
+		});
+	</script>
+
+
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="description" content="Author: Garshin K. V. Enter Text">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20241117185013">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header data-lp class="header header--option">
+			<div class="header__container">
+
+				<div class="menu">
+
+					<div class="menu__block">
+
+						<div class="menu__inner-logo">
+							<img src="img/logo.svg" alt="Logo Delizioso" class="menu__logo-pic">
+							<h1 class="menu__text-logo">Delizi<i class="menu__phrase">oso</i></h1>
+						</div>
+
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item"><a href="index.html" class="menu__link">Home</a></li>
+
+								<li class="menu__item"><a href="menu.html" class="menu__link">Menu</a></li>
+
+								<li class="menu__item"><a href="about_us.html" class="menu__link">About us</a></li>
+
+								<li class="menu__item"><a href="order_online.html" class="menu__link">Order online</a></li>
+
+								<li class="menu__item"><a href="reservation.html" class="menu__link">Reservation</a></li>
+
+								<li class="menu__item"><a href="contact.html" class="menu__link">Contact us</a></li>
+							</ul>
+						</nav>
+
+						<div class="menu__group-items other-item">
+							<button type="button" class="other-item__basket-purchases">k</button>
+
+							<button id="btnLogIn" type="button" class="other-item__user other-item__user--log-in" data-da=".menu__body,570,2" data-popup="#popup">Log in</button>
+
+							<button type="button" id="btnSingUp" class="other-item__user other-item__user--sign-up" data-popup="#sign-up" data-da=".menu__body,570,3">Sign up</button>
+
+							<button type="button" class="menu__icon icon-menu" aria-label="Burger Menu"><span></span></button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</header>
+		<div id="popup" aria-hidden="true" class="popup popup--log-in">
+			<div class="popup__wrapper">
+				<button data-close type="button" class="login-block__close" data-da=".body-window__double-log-img,991,2">l</button>
+				<div class="popup__content popup__content--login">
+
+					<div class="popup__text">
+
+						<div class="login-block">
+
+							<!-- TODO USER FORM -->
+							<div class="login-block__content">
+
+								<div class="login-block__crisper">
+
+									<div class="body-window__double-log-img">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="body-window__logo" width="33" height="33">
+									</div>
+
+									<div class="login-block__body-window body-window">
+
+										<div class="body-window__column-form">
+											<div class="body-window__prolog prolog">
+												<h1 class="prolog__caption">Login</h1>
+												<div class="prolog__management">Don't have an account? <button type="button" class="prolog__link-form" data-popup="#sign-up">Sign up</button></div>
+											</div>
+
+											<form action="#" class="body-window__account-form account-form" autocomplete="off">
+
+												<div class="account-form__main-data">
+													<div class="account-form__personal-data">
+
+														<label for="email-login" class="account-form__personal-accnt-label">Email address
+															<input id="email-login" type="email" class="account-form__input-field" name="user-email-login" placeholder="Enter your email" required>
+														</label>
+
+														<label for="password-visible" class="account-form__personal-accnt-label">Password
+															<input id="password-visible" type="text" class="account-form__input-field account-form__input-field--password-client" name="user-password-lg" placeholder="Enter password" autocomplete="off">
+														</label>
+
+													</div>
+
+													<div class="account-form__management-items">
+
+														<div class="account-form__inner-sign">
+															<input type="checkbox" class="account-form__input-remember-me" id="remember-me-login" value="remember-me-login" required>
+															<label class="account-form__label-remember-me" for="remember-me-login">Remember me</label>
+														</div>
+
+														<button type="button" class="account-form__forget-pass" data-popup="#forgot">Forget Password?</button>
+													</div>
+
+												</div>
+
+
+												<div class="account-form__buttons-jump buttons-jump">
+													<button type="submit" class="buttons-jump__sign-up-unit">Log in</button>
+													<button type="button" class="buttons-jump__google-account">Log in with google</button>
+												</div>
+
+											</form>
+											<div class="body-window__terms">
+												<span>Copyright &copy; 2024 Delizioso</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO POSTER -->
+							<div class="login-block__inner-poster-group">
+
+								<div class="login-block__enter-image">
+									<img src="img/sign_up_page/sign_up.webp" alt="Pancakes" class="login-block__thumb-unit" width="959" height="963">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sign-up" aria-hidden="true" class="popup popup--sign-up">
+			<div class="popup__wrapper">
+				<button data-close type="button" class="signup-block__close" data-da=".body-window__double-sign-img,996,1">l</button>
+				<div class="popup__content popup__content--sing-up">
+
+					<div class="popup__text">
+
+						<div class="signup-block">
+
+							<!-- TODO USER FORM -->
+							<div class="signup-block__content">
+
+								<div class="signup-block__crisper">
+
+									<div class="body-window__double-sign-img">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="body-window__logo" width="33" height="33">
+									</div>
+
+									<div class="signup-block__body-window body-window">
+
+										<div class="body-window__column-form">
+											<div class="body-window__prolog prolog">
+												<h1 class="prolog__caption">Sign up</h1>
+												<div class="prolog__management">Do you have an account? <button id="buttonJumpLogIn" type="button" class="prolog__link-form" data-popup="#popup">Log in</button></div>
+											</div>
+
+											<form action="#" class="body-window__account-form account-form" autocomplete="off">
+
+												<div class="account-form__main-data">
+													<div class="account-form__personal-data">
+
+														<label for="full-name-sign-up" class="account-form__personal-accnt-label">Full name
+															<input id="full-name-sign-up" type="text" class="account-form__input-field" name="full-name-sign-up" placeholder="Enter your full name" required>
+														</label>
+
+														<label for="email-sign-up" class="account-form__personal-accnt-label">Email address
+															<input id="email-sign-up" type="email" class="account-form__input-field" name="user-email-sign-up" placeholder="Enter your email" required>
+														</label>
+
+														<label for="password-visible-sign-up" class="account-form__personal-accnt-label">Password
+															<input id="password-visible-sign-up" type="text" class="account-form__input-field account-form__input-field--user-password" name="user-password-sign" placeholder="Enter password" autocomplete="off">
+														</label>
+
+													</div>
+
+													<div class="account-form__management-items">
+
+														<div class="account-form__inner-sign">
+															<input type="checkbox" class="account-form__input-remember-me" id="remember-me-sign-up" value="remember-me-sign-up">
+															<label class="account-form__label-remember-me" for="remember-me-sign-up">Remember me</label>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="account-form__buttons-jump buttons-jump">
+													<button type="submit" class="buttons-jump__sign-up-unit">Sign up</button>
+													<button type="button" class="buttons-jump__google-account">Sign up with google</button>
+												</div>
+
+											</form>
+											<div class="body-window__terms">
+												<span class="body-window__rules">By creating an account, I accept <a href="#" class="body-window__link-read">Terms of use</a> <br> site and agree with <a href="#" class="body-window__link-read">Privacy Policy</a></span>
+												<span>Copyright &copy; 2024 Delizioso</span>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO POSTER -->
+							<div class="signup-block__inner-poster-group">
+
+								<div class="login-block__enter-image">
+									<img src="img/sign_up_page/sign_up.webp" alt="Pancakes" class="login-block__thumb-unit" width="959" height="963">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="forgot" aria-hidden="true" class="popup popup--forgot">
+			<div class="popup__wrapper">
+
+				<div class="popup__content popup__content--forgot">
+
+					<div class="popup__text">
+
+						<div class="forgot-block">
+
+							<!-- TODO FORGOT -->
+							<div class="forgot-block__content">
+
+								<h1 class="forgot-block__title-window">Forgot your password?</h1>
+
+								<form class="forgot-block__form-recovery form-recovery" action="#" method="GET" enctype="multipart/form-data">
+									<label for="email-forgot" class="form-recovery__label-forgot">Email address
+										<input id="email-forgot" type="email" class="form-recovery__field-forgot" name="forgot-mail-user" placeholder="Enter your email" required>
+									</label>
+
+									<div class="form-recovery__case-link">
+										<a href="#" target="_blank" class="form-recovery__back-login" data-popup="#popup">Back to login</a>
+									</div>
+
+									<button type="submit" class="form-recovery__button-action">Submit</button>
+								</form>
+
+								<div class="forgot-block__note">
+									<span class="forgot-block__instructions">Enter your email address and we will send you instructions on how to create a new password</span>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<main class="page page--option">
+
+			<section class="checkout checkout--setup">
+				<div class="checkout__container">
+
+					<h1 class="checkout__title">Checkout</h1>
+
+					<form class="checkout__user-order-form" action="#" method="GET" enctype="multipart/form-data">
+
+						<fieldset class="checkout__data-order data-order">
+
+							<legend class="data-order__legend">Order data</legend>
+
+							<div class="data-order__wrap-grid">
+
+								<div class="data-order__cover">
+									<input id="fr-nm-checkout" class="data-order__input-case-checkout data-order__input-case-checkout--fr-nm" type="text" name="fr-nm-checkout" placeholder="First name" required>
+								</div>
+
+								<div class="data-order__cover">
+									<input id="ls-nm-checkout" class="data-order__input-case-checkout data-order__input-case-checkout--ls-nm" type="text" name="ls-nm-checkout" placeholder="Last name" required>
+								</div>
+
+								<div class="data-order__cover">
+									<input id="tel-checkout" class="data-order__input-case-checkout data-order__input-case-checkout--tel" type="tel" name="tel-checkout" pattern="\+?[0-9\s\-\(\)]+" placeholder="Phone number">
+								</div>
+
+								<div class="data-order__cover">
+									<input id="email-checkout" class="data-order__input-case-checkout data-order__input-case-checkout--email" type="email" name="email-checkout" placeholder="Email address" required>
+								</div>
+
+								<div class="data-order__cover-area">
+									<textarea id="note-area-checkout" class="data-order__input-case-checkout data-order__input-case-checkout--note-area" name="area-text-checkout" placeholder="Note" autocomplete="off"></textarea>
+								</div>
+
+							</div>
+						</fieldset>
+
+						<fieldset class="checkout__time-order time-order">
+
+							<legend class="time-order__legend">Order time</legend>
+
+							<div class="time-order__row-grid">
+
+								<div class="time-order__radio-wrap">
+									<input id="order-now" class="time-order__input-checkout" type="radio" value="order-now-checkout" name="order-time-checkout" required>
+									<label for="order-now" class="time-order__label-checkout">Order now</label>
+								</div>
+
+								<div class="time-order__radio-wrap">
+									<input id="order-later" class="time-order__input-checkout" type="radio" value="order-later-checkout" name="order-time-checkout" required>
+									<label for="order-later" class="time-order__label-checkout">Order later</label>
+								</div>
+
+							</div>
+
+						</fieldset>
+
+						<fieldset class="checkout__method-order method-order">
+
+							<legend class="method-order__legend">Order method</legend>
+
+							<div class="method-order__row-grid">
+
+								<div class="method-order__radio-wrap">
+									<input id="delivery" class="method-order__input-checkout" type="radio" value="delivery-checkout" name="order-method-checkout" required>
+									<label for="delivery" class="method-order__label-checkout">Delivery</label>
+								</div>
+
+								<div class="method-order__radio-wrap">
+									<input id="take-a-way" class="method-order__input-checkout" type="radio" value="take-a-way-checkout" name="order-method-checkout" required>
+									<label for="take-a-way" class="method-order__label-checkout">Take a way</label>
+								</div>
+
+							</div>
+
+						</fieldset>
+
+						<fieldset class="checkout__payment-method payment-method">
+
+							<legend class="payment-method__legend">Payment method</legend>
+
+							<div class="payment-method__column-grid">
+
+								<div class="payment-method__radio-inner">
+									<input id="cash-on-delivery" class="payment-method__input-checkout" type="radio" value="cash-on-delivery-checkout" name="payment-method-checkout" required>
+									<label for="cash-on-delivery" class="payment-method__label-checkout">Cash On Delivery</label>
+								</div>
+
+								<div class="payment-method__radio-inner">
+									<input id="bca-virtual-account" class="payment-method__input-checkout" type="radio" value="bca-virtual-account-checkout" name="payment-method-checkout" required>
+									<label for="bca-virtual-account" class="payment-method__label-checkout">BCA Virtual Account</label>
+								</div>
+
+								<div class="payment-method__radio-inner">
+									<input id="credit_card" class="payment-method__input-checkout" type="radio" value="credit_card-checkout" name="payment-method-checkout" required>
+									<label for="credit_card" class="payment-method__label-checkout">Credit Card</label>
+								</div>
+
+							</div>
+
+						</fieldset>
+
+						<fieldset class="checkout__shipping-address shipping-address">
+
+							<legend class="shipping-address__legend">Shipping address</legend>
+
+							<div class="shipping-address__wrap-grid-col address-shipping">
+
+								<div class="address-shipping__main-row main-row">
+
+									<div class="main-row__fields">
+										<div class="main-row__type-address type-address">
+											<input id="type-user-address" class="type-address__input-other-checkout" type="text" name="type-user-address" placeholder="Please type your address" required autocomplete="off">
+											<button id="type-address-user" type="button" class="type-address__button-search">Search</button>
+										</div>
+
+										<div class="main-row__field-client-location client-location">
+											<button id="current-location-user" type="button" class="client-location__send-btn">s</button>
+											<input id="user-current-location" class="client-location__input-value" type="text" name="use-current-location" placeholder="Use your current location" autocomplete="off">
+										</div>
+									</div>
+
+									<div id="map-checkout" class="map-checkout"></div>
+								</div>
+
+								<button type="button" class="address-shipping__btn-order-nowcheckout">Order now</button>
+
+							</div>
+
+						</fieldset>
+
+					</form>
+
+				</div>
+			</section>
+
+		</main>
+		<footer class="footer footer--setup">
+			<div class="footer__container">
+
+				<div class="footer__body body">
+
+					<div class="body__up-level column">
+
+						<section class="column__info-box info-box">
+
+							<div class="info-box__wrap-logo">
+								<img src="img/logo.svg" alt="Logo Delizioso" class="info-box__company-logo">
+								<h1 class="info-box__inscription">Delizi<i class="info-box__accent">oso</i></h1>
+							</div>
+
+							<div class="info-box__paragraph">
+								<p>Viverra gravida morbi egestas facilisis tortor netus non duis tempor.</p>
+							</div>
+
+							<ul class="info-box__social">
+								<li class="info-box__label"><a href="https://web.telegram.org/" class="info-box__icon" target="_blank" title="Telegram">f</a></li>
+								<li class="info-box__label"><a href="https://www.instagram.com/" class="info-box__icon" target="_blank" title="Instagram">g</a></li>
+								<li class="info-box__label" title="Facebook"><a href="https://www.facebook.com/" class="info-box__icon" target="_blank">h</a></li>
+							</ul>
+						</section>
+
+						<div class="column__link-content link-content">
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Page</h2>
+								<ul class="cell__list">
+									<li class="cell__item"><a href="index.html" class="cell__link-jump">Home</a></li>
+									<li class="cell__item"><a href="menu.html" class="cell__link-jump">Menu</a></li>
+									<li class="cell__item"><a href="order_online.html" class="cell__link-jump">Order online</a></li>
+									<li class="cell__item"><a href="catering.html" class="cell__link-jump">Catering</a></li>
+									<li class="cell__item"><a href="reservation.html" class="cell__link-jump">Reservation</a></li>
+								</ul>
+							</article>
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Information</h2>
+								<ul class="cell__list">
+									<li class="cell__item"><a href="about_us.html" class="cell__link-jump">About us</a></li>
+									<li class="cell__item"><a href="#" class="cell__link-jump">Testimonial</a></li>
+									<li class="cell__item"><a href="order_online.html" class="cell__link-jump">Order online</a></li>
+									<li class="cell__item"><a href="#" class="cell__link-jump">Event</a></li>
+								</ul>
+							</article>
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Get in touch</h2>
+								<ul class="cell__list">
+									<li class="cell__address-item">3247 Johnson Ave, Bronx, NY 10463, Amerika Serikat</li>
+									<li class="cell__contact-item"><a href="delizioso@gmail.com" class="cell__link-contact">delizioso@gmail.com</a></li>
+									<li class="cell__contact-item"><a href="tel:12345678901" class="cell__link-contact">+123 4567 8901</a></li>
+								</ul>
+							</article>
+
+						</div>
+
+					</div>
+
+					<div class="body__down-level">Copyright &copy; 2022 Delizioso</div>
+
+				</div>
+			</div>
+		</footer>
+	</div>
+	<script src="js/app.min.js?_v=20241117185013"></script>
+
+</body>
+
+</html>

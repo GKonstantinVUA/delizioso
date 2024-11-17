@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Delizioso</title>
+	<script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6?_v=20241117185013">
+	</script>
+
+
+	<script>
+		(g => {
+			var h, a, k, p = "The Google Maps JavaScript API",
+				c = "google",
+				l = "importLibrary",
+				q = "__ib__",
+				m = document,
+				b = window;
+			b = b[c] || (b[c] = {});
+			var d = b.maps || (b.maps = {}),
+				r = new Set,
+				e = new URLSearchParams,
+				u = () => h || (h = new Promise(async (f, n) => {
+					await (a = m.createElement("script"));
+					e.set("language", "en");
+					e.set("libraries", [...r] + "");
+					for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+					e.set("callback", c + ".maps." + q);
+					a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+					d[q] = f;
+					a.onerror = () => h = n(Error(p + " could not load."));
+					a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+					m.head.append(a)
+				}));
+			d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+		})({
+			key: "AIzaSyCiZVu7tK48b6fDBrz2Q_JDNaK3Xq76GPI",
+			v: "weekly",
+			// Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+			// Add other bootstrap parameters as needed, using camel case.
+		});
+	</script>
+
+
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="description" content="Author: Garshin K. V. Enter Text">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20241117185013">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header data-lp class="header header--option">
+			<div class="header__container">
+
+				<div class="menu">
+
+					<div class="menu__block">
+
+						<div class="menu__inner-logo">
+							<img src="img/logo.svg" alt="Logo Delizioso" class="menu__logo-pic">
+							<h1 class="menu__text-logo">Delizi<i class="menu__phrase">oso</i></h1>
+						</div>
+
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item"><a href="index.html" class="menu__link">Home</a></li>
+
+								<li class="menu__item"><a href="menu.html" class="menu__link">Menu</a></li>
+
+								<li class="menu__item"><a href="about_us.html" class="menu__link">About us</a></li>
+
+								<li class="menu__item"><a href="order_online.html" class="menu__link">Order online</a></li>
+
+								<li class="menu__item"><a href="reservation.html" class="menu__link">Reservation</a></li>
+
+								<li class="menu__item"><a href="contact.html" class="menu__link">Contact us</a></li>
+							</ul>
+						</nav>
+
+						<div class="menu__group-items other-item">
+							<button type="button" class="other-item__basket-purchases">k</button>
+
+							<button id="btnLogIn" type="button" class="other-item__user other-item__user--log-in" data-da=".menu__body,570,2" data-popup="#popup">Log in</button>
+
+							<button type="button" id="btnSingUp" class="other-item__user other-item__user--sign-up" data-popup="#sign-up" data-da=".menu__body,570,3">Sign up</button>
+
+							<button type="button" class="menu__icon icon-menu" aria-label="Burger Menu"><span></span></button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</header>
+		<div id="popup" aria-hidden="true" class="popup popup--log-in">
+			<div class="popup__wrapper">
+				<button data-close type="button" class="login-block__close" data-da=".body-window__double-log-img,991,2">l</button>
+				<div class="popup__content popup__content--login">
+
+					<div class="popup__text">
+
+						<div class="login-block">
+
+							<!-- TODO USER FORM -->
+							<div class="login-block__content">
+
+								<div class="login-block__crisper">
+
+									<div class="body-window__double-log-img">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="body-window__logo" width="33" height="33">
+									</div>
+
+									<div class="login-block__body-window body-window">
+
+										<div class="body-window__column-form">
+											<div class="body-window__prolog prolog">
+												<h1 class="prolog__caption">Login</h1>
+												<div class="prolog__management">Don't have an account? <button type="button" class="prolog__link-form" data-popup="#sign-up">Sign up</button></div>
+											</div>
+
+											<form action="#" class="body-window__account-form account-form" autocomplete="off">
+
+												<div class="account-form__main-data">
+													<div class="account-form__personal-data">
+
+														<label for="email-login" class="account-form__personal-accnt-label">Email address
+															<input id="email-login" type="email" class="account-form__input-field" name="user-email-login" placeholder="Enter your email" required>
+														</label>
+
+														<label for="password-visible" class="account-form__personal-accnt-label">Password
+															<input id="password-visible" type="text" class="account-form__input-field account-form__input-field--password-client" name="user-password-lg" placeholder="Enter password" autocomplete="off">
+														</label>
+
+													</div>
+
+													<div class="account-form__management-items">
+
+														<div class="account-form__inner-sign">
+															<input type="checkbox" class="account-form__input-remember-me" id="remember-me-login" value="remember-me-login" required>
+															<label class="account-form__label-remember-me" for="remember-me-login">Remember me</label>
+														</div>
+
+														<button type="button" class="account-form__forget-pass" data-popup="#forgot">Forget Password?</button>
+													</div>
+
+												</div>
+
+
+												<div class="account-form__buttons-jump buttons-jump">
+													<button type="submit" class="buttons-jump__sign-up-unit">Log in</button>
+													<button type="button" class="buttons-jump__google-account">Log in with google</button>
+												</div>
+
+											</form>
+											<div class="body-window__terms">
+												<span>Copyright &copy; 2024 Delizioso</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO POSTER -->
+							<div class="login-block__inner-poster-group">
+
+								<div class="login-block__enter-image">
+									<img src="img/sign_up_page/sign_up.webp" alt="Pancakes" class="login-block__thumb-unit" width="959" height="963">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sign-up" aria-hidden="true" class="popup popup--sign-up">
+			<div class="popup__wrapper">
+				<button data-close type="button" class="signup-block__close" data-da=".body-window__double-sign-img,996,1">l</button>
+				<div class="popup__content popup__content--sing-up">
+
+					<div class="popup__text">
+
+						<div class="signup-block">
+
+							<!-- TODO USER FORM -->
+							<div class="signup-block__content">
+
+								<div class="signup-block__crisper">
+
+									<div class="body-window__double-sign-img">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="body-window__logo" width="33" height="33">
+									</div>
+
+									<div class="signup-block__body-window body-window">
+
+										<div class="body-window__column-form">
+											<div class="body-window__prolog prolog">
+												<h1 class="prolog__caption">Sign up</h1>
+												<div class="prolog__management">Do you have an account? <button id="buttonJumpLogIn" type="button" class="prolog__link-form" data-popup="#popup">Log in</button></div>
+											</div>
+
+											<form action="#" class="body-window__account-form account-form" autocomplete="off">
+
+												<div class="account-form__main-data">
+													<div class="account-form__personal-data">
+
+														<label for="full-name-sign-up" class="account-form__personal-accnt-label">Full name
+															<input id="full-name-sign-up" type="text" class="account-form__input-field" name="full-name-sign-up" placeholder="Enter your full name" required>
+														</label>
+
+														<label for="email-sign-up" class="account-form__personal-accnt-label">Email address
+															<input id="email-sign-up" type="email" class="account-form__input-field" name="user-email-sign-up" placeholder="Enter your email" required>
+														</label>
+
+														<label for="password-visible-sign-up" class="account-form__personal-accnt-label">Password
+															<input id="password-visible-sign-up" type="text" class="account-form__input-field account-form__input-field--user-password" name="user-password-sign" placeholder="Enter password" autocomplete="off">
+														</label>
+
+													</div>
+
+													<div class="account-form__management-items">
+
+														<div class="account-form__inner-sign">
+															<input type="checkbox" class="account-form__input-remember-me" id="remember-me-sign-up" value="remember-me-sign-up">
+															<label class="account-form__label-remember-me" for="remember-me-sign-up">Remember me</label>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="account-form__buttons-jump buttons-jump">
+													<button type="submit" class="buttons-jump__sign-up-unit">Sign up</button>
+													<button type="button" class="buttons-jump__google-account">Sign up with google</button>
+												</div>
+
+											</form>
+											<div class="body-window__terms">
+												<span class="body-window__rules">By creating an account, I accept <a href="#" class="body-window__link-read">Terms of use</a> <br> site and agree with <a href="#" class="body-window__link-read">Privacy Policy</a></span>
+												<span>Copyright &copy; 2024 Delizioso</span>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO POSTER -->
+							<div class="signup-block__inner-poster-group">
+
+								<div class="login-block__enter-image">
+									<img src="img/sign_up_page/sign_up.webp" alt="Pancakes" class="login-block__thumb-unit" width="959" height="963">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="popupreserv" aria-hidden="true" class="popup popup--reserv">
+			<div class="popup__wrapper">
+				<button data-close type="button" class="popup__header-btn-close">l</button> <!-- data-da=".body-window__double-sign-img,996,1" -->
+				<div class="popup__content popup__content--bg-reserv">
+
+					<div class="popup__text">
+
+						<div class="reservation-block">
+
+							<div class="menu-popreserv menu-popreserv--speaking-down">
+
+								<div class="menu-popreserv__header-block">
+
+									<div class="menu-popreserv__inner-logo">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="menu-popreserv__item-pic">
+										<div class="menu-popreserv__logo-name">Delizi<i class="menu-popreserv__oso-phrase">oso</i></div>
+									</div>
+
+									<nav class="menu-popreserv__body-reserv"></nav>
+
+									<div class="menu-popreserv__btns-items">
+
+										<button type="button" class="menu-popreserv__option menu-popreserv__option--log-in" data-popup="#popup" data-da=".menu-popreserv__body-reserv,600,1">Log in</button>
+
+										<button type="button" class="menu-popreserv__option menu-popreserv__option--sign-up" data-popup="#sign-up" data-da=".menu-popreserv__body-reserv,600,2">Sign up</button>
+
+										<button type="button" class="popup__icon-purchases">k</button>
+
+										<button type="button" class="menu-popreserv__icon icon-menu-reserv" aria-label="Burger Menu"><span></span></button>
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="reservation-block__photo-prev photo-prev">
+								<img src="img/reservation_page/reservation.webp" alt="Reservation" class="photo-prev__table" width="300" height="300">
+							</div>
+
+							<article class="reservation-block__detail detail">
+								<h1 class="detail__title">Reservation detail</h1>
+								<div class="detail__info info-reservation">
+									<ul class="info-reservation__up-level up-level">
+										<li id="dateOrderReservation" class="up-level__value-row"></li>
+										<li id="timeOrderReservation" class="up-level__value-row"></li>
+										<li id="dataOrderPartySize" class="up-level__value-row"></li>
+									</ul>
+
+									<div class="info-reservation__down-level" data-da=".reservation-block,767,2">
+										<p>Due to limited availability, we can hold this table for you for <strong class="info-reservation__min-value">5:00 minutes</strong></p>
+									</div>
+
+								</div>
+							</article>
+
+							<div class="reservation-block__order-form-wrap">
+								<h2 class="reservation-block__caption-order-fr">Data order</h2>
+								<form id="formReservation" class="reservation-block__data-order data-order" action="#" method="GET" enctype="multipart/form-data">
+
+									<div class="data-order__inputs-box">
+										<div class="data-order__box-input">
+											<input id="dataOrderFirstName" type="text" class="data-order__input-field" name="first-name-data-order" placeholder="First name" required autocomplete="off">
+											<div class="data-order__first-name-error">The field contains errors or invalid characters</div>
+										</div>
+										<div class="data-order__box-input">
+											<input id="dataOrderLastName" type="text" class="data-order__input-field" name="last-name-data-order" placeholder="Last name" required autocomplete="off">
+											<div class="data-order__last-name-error">The field contains errors or invalid characters</div>
+										</div>
+										<div class="data-order__box-input">
+											<input id="dataOrderPhone" type="tel" pattern="\+?[0-9\s\-\(\)]+" class="data-order__input-field" name="phone-data-order" required placeholder="Phone number">
+										</div>
+										<div class="data-order__box-input">
+											<input id="dataOrderMail" type="email" class="data-order__input-field" name="mail__data-order" placeholder="Email address" required autocomplete="off">
+											<div class="data-order__mail-error">The field contains errors or omitted required characters</div>
+										</div>
+
+										<div class="data-order__box-input data-order__box-input--accasion">
+
+											<input id="accasionInputOptional" type="text" class="data-order__label-input data-order__label-input--mark" placeholder="Select an accasion (optional)" required autocomplete="off" readonly>
+
+											<div id="dataOrderListAccasion" class="data-order__set-elements">
+
+												<select id="dataOrderAccasion" class="data-order__box-accasion data-order__box-accasion--category-name" name="accasion__category" style="display: none;">
+
+													<option id="valueNotGivenPopreserv" value="none-value" class="data-order__none-option">None</option>
+													<option value="birthday" class="data-order__option">Birthday</option>
+													<option value="anniversary" class="data-order__option">Anniversary</option>
+													<option value="corporate" class="data-order__option">Corporate</option>
+													<option value="themed_party" class="data-order__option">Themed party</option>
+													<option value="wedding" class="data-order__option">Wedding</option>
+													<option value="charity_event" class="data-order__option">Charity event</option>
+													<option value="conference" class="data-order__option">Conference</option>
+													<option value="business_meeting" class="data-order__option">Business meeting</option>
+													<option value="networking" class="data-order__option">Networking</option>
+												</select>
+
+												<!-- Создаем кастомный ul, который будет заменять select -->
+												<ul id="accasionFantomList" class="data-order__list">
+													<!-- Элементы будут добавлены через JavaScript -->
+												</ul>
+											</div>
+										</div>
+
+										<div class="data-order__box-input">
+											<input id="DataOrderSpecialRequest" type="text" class="data-order__input-field" name="special-request-data-order" placeholder="Add a special request" autocomplete="off">
+										</div>
+
+									</div>
+
+									<div class="data-order__box-form box-form">
+										<div class="box-form__column">
+											<div id="boxFormRadioBtn" class="box-form__radio-btn">
+												<!-- * Radio-btn #1 -->
+												<div class="box-form__inner-radio">
+													<input id="termOneBoxForm" type="radio" class="box-form__radio-input" value="radio-term-one" name="radio-terms" required>
+													<label for="termOneBoxForm" class="box-form__label-radio">I agree with what is stated above</label>
+												</div>
+												<!-- * Radio-btn #2 -->
+												<div class="box-form__inner-radio">
+													<input id="termOneBoxTwo" type="radio" class="box-form__radio-input" value="radio-term-two" name="radio-terms" required>
+													<label for="termOneBoxTwo" class="box-form__label-radio">Sign me up to receive dining offers and news from this restaurant by email.</label>
+												</div>
+												<!-- * Radio-btn #3 -->
+												<div class="box-form__inner-radio">
+													<input id="termOneBoxThree" type="radio" class="box-form__radio-input" value="radio-term-three" name="radio-terms" required>
+													<label for="termOneBoxThree" class="box-form__label-radio">Sign me up to receive dining offers and news from this restaurant by email.</label>
+												</div>
+											</div>
+
+											<button id="buttonConfirmReservationInForm" type="submit" class="box-form__confirm-button" data-popup="#confirmation" data-da=".data-order__box-form,767">Confirm reservation</button>
+										</div>
+
+										<article class="box-form__column">
+											<h2 class="box-form__subcaption">
+												Restaurant informations
+											</h2>
+											<div class="box-form__paragraph">
+												<p>
+													Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+												</p>
+												<p>
+													Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam.
+												</p>
+											</div>
+										</article>
+									</div>
+
+								</form>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="confirmation" aria-hidden="true" class="popup popup--confirmation">
+			<div class="popup__wrapper">
+
+				<button data-close type="button" class="popup__header-btn-close">l</button> <!-- data-da=".body-window__double-sign-img,996,1" -->
+
+				<div class="popup__content popup__content---bg-zone">
+					<div class="popup__text">
+
+						<div class="confirmation-block">
+
+							<!-- TODO POPUP-MENU -->
+							<div class="popup-menu popup-menu--speaking-down">
+
+								<div class="popup-menu__header-block">
+
+									<div class="popup-menu__inner-logo">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="popup-menu__item-pic">
+										<div class="popup-menu__logo-name">Delizi<i class="popup-menu__oso-phrase">oso</i></div>
+									</div>
+
+									<nav class="popup-menu__body-confirmation"></nav>
+
+									<div class="popup-menu__btns-items">
+
+										<button type="button" class="popup-menu__option popup-menu__option--log-in" data-popup="#popup" data-da=".popup-menu__body-confirmation,600,1">Log in</button>
+
+										<button type="button" class="popup-menu__option popup-menu__option--sign-up" data-popup="#sign-up" data-da=".popup-menu__body-confirmation,600,2">Sign up</button>
+
+										<button type="button" class="popup__icon-purchases">k</button>
+
+
+										<button type="button" class="popup-menu__icon icon-menu-confirmat" aria-label="Burger Menu"><span></span></button>
+									</div>
+
+								</div>
+
+							</div>
+
+							<!-- TODO RESULT -->
+							<div class="result result--dividen-down">
+								<div class="result__bg-wrapper">
+									<div class="result__decor-elements element-decor">
+										<span class="element-decor__circle element-decor__circle--one"></span>
+										<span class="element-decor__circle element-decor__circle--two"></span>
+										<span class="element-decor__circle element-decor__circle--three"></span>
+										<span class="element-decor__circle element-decor__circle--four"></span>
+										<span class="element-decor__circle element-decor__circle--five"></span>
+									</div>
+									<div class="result__inner-data-desk">
+										<article class="result__id-order id-order">
+											<h1 class="id-order__title">Reservation has been confirmed</h1>
+											<ul class="id-order__list">
+												<li class="id-order__item-list id-order__item-list--info">The confirmation result has been sent to your email.
+												</li>
+												<li class="id-order__item-list id-order__item-list--result">Booking ID: <span id="numberIdOrderConfirmation"> #123456</span></li>
+											</ul>
+										</article>
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO DETAIL -->
+							<div class="details-order details-order--setup-block">
+
+								<div class="details-order__inner-pic-detail">
+									<img src="img/home_page/reserve/bar.webp" alt="Bar" class="details-order__bar-circle-img" width="210" height="210">
+								</div>
+
+								<div class="details-order__inner-desk-reservation">
+									<h3 class="details-order__caption-sub">Reservation detail</h3>
+
+									<ul class="details-order__bl-desk bl-desk">
+										<li id="blDeskDateConfirmation" class="bl-desk__listitem"></li>
+										<li id="blDeskTimeConfirmation" class="bl-desk__listitem"></li>
+										<li id="blDeskPartyConfirmation" class="bl-desk__listitem"></li>
+									</ul>
+								</div>
+
+								<div class="details-order__buttn-sign btn-solution">
+									<button type="button" class="btn-solution__apply btn-solution__apply--modify" data-popup="#popupreserv">Modify</button>
+									<button type="button" class="btn-solution__apply btn-solution__apply--cancel" data-popup="#cancel">Cancel</button>
+								</div>
+							</div>
+
+							<div class="confirmation-block__info-dop-order dop-order">
+								<form class="dop-order__request request-fr" action="#" method="GET" enctype="multipart/form-data">
+
+
+									<div class="request-fr__box-input request-fr__box-input--confirmatiom">
+
+										<input id="confirmatiomInputLabel" type="text" class="request-fr__label-input request-fr__label-input--mark" placeholder="Select an accasion (optional)" required autocomplete="off" readonly>
+
+										<div id="requestFrListConfirmatiom" class="request-fr__set-elements">
+
+											<select id="requestFrConfirmatiom" class="request-fr__box-confirmatiom request-fr__box-confirmatiom--category-name" name="confirmatiom__category" style="display: none;">
+
+												<option id="valueNotGivenConfirmation" value="none-value" class="request-fr__none-option">None</option>
+												<option value="birthday" class="request-fr__option">Birthday</option>
+												<option value="anniversary" class="request-fr__option">Anniversary</option>
+												<option value="corporate" class="request-fr__option">Corporate</option>
+												<option value="themed_party" class="request-fr__option">Themed party</option>
+												<option value="wedding" class="request-fr__option">Wedding</option>
+												<option value="charity_event" class="request-fr__option">Charity event</option>
+												<option value="conference" class="request-fr__option">Conference</option>
+												<option value="business_meeting" class="request-fr__option">Business meeting</option>
+												<option value="networking" class="request-fr__option">Networking</option>
+											</select>
+
+											<!-- Создаем кастомный ul, который будет заменять select -->
+											<ul id="confirmatiomListOptions" class="request-fr__list">
+												<!-- Элементы будут добавлены через JavaScript -->
+											</ul>
+										</div>
+									</div>
+									<div class="request-fr__crisper-tx-ar">
+										<textarea class="request-fr__text-area" name="text-area__form-request" placeholder="Add a special request" autocomplete="off"></textarea>
+									</div>
+
+								</form>
+
+								<article class="dop-order__bar-desk bar-desk">
+									<h2 class="bar-desk__subtitle">
+										Restaurant informations
+									</h2>
+									<div class="bar-desk__paragraph">
+										<p>
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+										</p>
+										<p>
+											Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam.
+										</p>
+									</div>
+								</article>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="cancel" aria-hidden="true" class="popup popup--cancel">
+			<div class="popup__wrapper">
+
+				<button data-close type="button" class="popup__header-btn-close">l</button> <!-- data-da=".body-window__double-sign-img,996,1" -->
+
+				<div class="popup__content popup__content---bg-zone">
+					<div class="popup__text">
+
+						<div class="cancel-block">
+
+							<!-- TODO POPUP-MENU -->
+
+							<div class="popup-menu popup-menu--speaking-down">
+
+								<div class="popup-menu__header-block">
+
+									<div class="popup-menu__inner-logo">
+										<img src="img/logo.svg" alt="Logo Delizioso" class="popup-menu__item-pic">
+										<div class="popup-menu__logo-name">Delizi<i class="popup-menu__oso-phrase">oso</i></div>
+									</div>
+
+									<nav class="popup-menu__body-cancel"></nav>
+
+									<div class="popup-menu__btns-items">
+
+										<button type="button" class="popup-menu__option popup-menu__option--log-in" data-popup="#popup" data-da=".popup-menu__body-cancel,600,1">Log in</button>
+
+										<button type="button" class="popup-menu__option popup-menu__option--sign-up" data-popup="#sign-up" data-da=".popup-menu__body-cancel,600,2">Sign up</button>
+
+										<button type="button" class="popup__icon-purchases">k</button>
+
+										<button type="button" class="popup-menu__icon-cancel icon-menu-cancel" aria-label="Burger Menu"><span></span></button>
+									</div>
+
+								</div>
+
+							</div>
+
+							<!-- TODO RESULT -->
+							<div class="result result--dividen-cancel">
+								<div class="result__bg-wrapper result__bg-wrapper--cancel">
+									<div class="result__decor-elements element-decor">
+										<span class="element-decor__circle element-decor__circle--one"></span>
+										<span class="element-decor__circle element-decor__circle--two"></span>
+										<span class="element-decor__circle element-decor__circle--three"></span>
+										<span class="element-decor__circle element-decor__circle--four"></span>
+										<span class="element-decor__circle element-decor__circle--five"></span>
+									</div>
+									<div class="result__inner-data-desk">
+										<article class="result__id-order id-order">
+											<h1 class="id-order__title">Are you sure you want to cancel the reservation?</h1>
+											<ul class="id-order__list">
+												<li class="id-order__item-list id-order__item-list--result">Booking ID: <span id="numberIdOrderCancel"> #123456</span></li>
+											</ul>
+										</article>
+									</div>
+								</div>
+							</div>
+
+							<!-- TODO DETAIL -->
+							<div class="details-order details-order--setup-block details-order--cancel">
+
+								<div class="details-order__flex-box">
+									<div class="details-order__inner-pic-detail">
+										<img src="img/home_page/reserve/bar.webp" alt="Bar" class="details-order__bar-circle-img" width="210" height="210">
+									</div>
+									<div class="details-order__inner-desk-reservation">
+										<h3 class="details-order__caption-sub">Reservation detail</h3>
+										<ul class="details-order__bl-desk bl-desk">
+											<li id="blDeskDateCancel" class="bl-desk__listitem"></li>
+											<li id="blDeskTimeCancel" class="bl-desk__listitem"></li>
+											<li id="blDeskPartyCancel" class="bl-desk__listitem">2 people (Standar seating)</li>
+										</ul>
+									</div>
+									<div class="details-order__test">
+
+									</div>
+								</div>
+
+								<div class="details-order__cancel-button btn-solution">
+									<button type="button" class="btn-solution__cancel-order btn-solution__cancel-order--mod">Cancel reservation</button>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="forgot" aria-hidden="true" class="popup popup--forgot">
+			<div class="popup__wrapper">
+
+				<div class="popup__content popup__content--forgot">
+
+					<div class="popup__text">
+
+						<div class="forgot-block">
+
+							<!-- TODO FORGOT -->
+							<div class="forgot-block__content">
+
+								<h1 class="forgot-block__title-window">Forgot your password?</h1>
+
+								<form class="forgot-block__form-recovery form-recovery" action="#" method="GET" enctype="multipart/form-data">
+									<label for="email-forgot" class="form-recovery__label-forgot">Email address
+										<input id="email-forgot" type="email" class="form-recovery__field-forgot" name="forgot-mail-user" placeholder="Enter your email" required>
+									</label>
+
+									<div class="form-recovery__case-link">
+										<a href="#" target="_blank" class="form-recovery__back-login" data-popup="#popup">Back to login</a>
+									</div>
+
+									<button type="submit" class="form-recovery__button-action">Submit</button>
+								</form>
+
+								<div class="forgot-block__note">
+									<span class="forgot-block__instructions">Enter your email address and we will send you instructions on how to create a new password</span>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<main class="page page--option page--reservation">
+
+			<div class="book-a-table">
+
+				<!-- TODO Poster -->
+				<div class="column-item">
+					<div class="column-item__external-case-image">
+						<div class="column-item__inner-case-image">
+							<img src="img/reservation_page/reservation.webp" alt="Reservation" class="column-item__reservation-img" width="526" height="526">
+						</div>
+					</div>
+				</div>
+
+				<!-- TODO Form -->
+				<div class="book-a-table__content">
+					<div class="book-a-table__body right-form">
+						<h1 class="right-form__title-book-a-table" data-da=".book-a-table,767,0">Book a table</h1>
+
+						<form id="bookATable" class="right-form__form-page form-page" action="#" method="GET" enctype="multipart/form-data">
+
+							<div class="form-page__input-wrap">
+								<input id="dateBookTable" type="text" class="form-page__input form-page__input--marker" name="book-a-table-date" placeholder="Date" required data-datepicker autocomplete="off">
+							</div>
+
+							<div class="form-page__input-wrap form-page__input-wrap--time">
+								<input id="timeBookTable" type="text" class="form-page__input form-page__input--marker" placeholder="Time" required autocomplete="off">
+
+								<div id="fieldsTimeBookTable" class="form-page__time-picker">
+									<div id="selectsTimeFields" class="form-page__group-field-time">
+										<select id="hours" class="form-page__time-setup-field form-page__hour-chouse hour-list">
+											<option value="00" class="hour-list__choice-value">00</option>
+											<option value="01" class="hour-list__choice-value">01</option>
+											<option value="02" class="hour-list__choice-value">02</option>
+											<option value="03" class="hour-list__choice-value">03</option>
+											<option value="04" class="hour-list__choice-value">04</option>
+											<option value="05" class="hour-list__choice-value">05</option>
+											<option value="06" class="hour-list__choice-value">06</option>
+											<option value="07" class="hour-list__choice-value">07</option>
+											<option value="08" class="hour-list__choice-value">08</option>
+											<option value="09" class="hour-list__choice-value">09</option>
+											<option value="10" class="hour-list__choice-value">10</option>
+											<option value="11" class="hour-list__choice-value">11</option>
+											<option value="12" class="hour-list__choice-value">12</option>
+										</select> :
+										<select id="minutes" class="form-page__time-setup-field form-page__minutes-chouse minutes-list">
+											<option value="00" class="minutes-list__choice-value">00</option>
+											<option value="01" class="minutes-list__choice-value">01</option>
+											<option value="02" class="minutes-list__choice-value">02</option>
+											<option value="03" class="minutes-list__choice-value">03</option>
+											<option value="04" class="minutes-list__choice-value">04</option>
+											<option value="05" class="minutes-list__choice-value">05</option>
+											<option value="06" class="minutes-list__choice-value">06</option>
+											<option value="07" class="minutes-list__choice-value">07</option>
+											<option value="08" class="minutes-list__choice-value">08</option>
+											<option value="09" class="minutes-list__choice-value">09</option>
+											<option value="10" class="minutes-list__choice-value">10</option>
+											<option value="11" class="minutes-list__choice-value">11</option>
+											<option value="12" class="minutes-list__choice-value">12</option>
+											<option value="13" class="minutes-list__choice-value">13</option>
+											<option value="14" class="minutes-list__choice-value">14</option>
+											<option value="15" class="minutes-list__choice-value">15</option>
+											<option value="16" class="minutes-list__choice-value">16</option>
+											<option value="17" class="minutes-list__choice-value">17</option>
+											<option value="18" class="minutes-list__choice-value">18</option>
+											<option value="19" class="minutes-list__choice-value">19</option>
+											<option value="20" class="minutes-list__choice-value">20</option>
+											<option value="21" class="minutes-list__choice-value">21</option>
+											<option value="22" class="minutes-list__choice-value">22</option>
+											<option value="23" class="minutes-list__choice-value">23</option>
+											<option value="24" class="minutes-list__choice-value">24</option>
+											<option value="25" class="minutes-list__choice-value">25</option>
+											<option value="26" class="minutes-list__choice-value">26</option>
+											<option value="27" class="minutes-list__choice-value">27</option>
+											<option value="28" class="minutes-list__choice-value">28</option>
+											<option value="29" class="minutes-list__choice-value">29</option>
+											<option value="30" class="minutes-list__choice-value">30</option>
+											<option value="31" class="minutes-list__choice-value">31</option>
+											<option value="32" class="minutes-list__choice-value">32</option>
+											<option value="33" class="minutes-list__choice-value">33</option>
+											<option value="34" class="minutes-list__choice-value">34</option>
+											<option value="35" class="minutes-list__choice-value">35</option>
+											<option value="36" class="minutes-list__choice-value">36</option>
+											<option value="37" class="minutes-list__choice-value">37</option>
+											<option value="38" class="minutes-list__choice-value">38</option>
+											<option value="39" class="minutes-list__choice-value">39</option>
+											<option value="40" class="minutes-list__choice-value">40</option>
+											<option value="41" class="minutes-list__choice-value">41</option>
+											<option value="42" class="minutes-list__choice-value">42</option>
+											<option value="43" class="minutes-list__choice-value">43</option>
+											<option value="44" class="minutes-list__choice-value">44</option>
+											<option value="45" class="minutes-list__choice-value">45</option>
+											<option value="46" class="minutes-list__choice-value">46</option>
+											<option value="47" class="minutes-list__choice-value">47</option>
+											<option value="48" class="minutes-list__choice-value">48</option>
+											<option value="49" class="minutes-list__choice-value">49</option>
+											<option value="50" class="minutes-list__choice-value">50</option>
+											<option value="51" class="minutes-list__choice-value">51</option>
+											<option value="52" class="minutes-list__choice-value">52</option>
+											<option value="53" class="minutes-list__choice-value">53</option>
+											<option value="54" class="minutes-list__choice-value">54</option>
+											<option value="55" class="minutes-list__choice-value">55</option>
+											<option value="56" class="minutes-list__choice-value">56</option>
+											<option value="57" class="minutes-list__choice-value">57</option>
+											<option value="58" class="minutes-list__choice-value">58</option>
+											<option value="59" class="minutes-list__choice-value">59</option>
+										</select>
+										<select id="ampm" class="form-page__time-setup-field form-page__ampm ampm-list">
+											<option value="AM" class="ampm-list__choice-item-option">AM</option>
+											<option value="PM" class="ampm-list__choice-item-option">PM</option>
+										</select>
+									</div>
+
+									<div class="form-page__buttons-set-time button-time">
+										<button id="setTimeBtn" class="button-time__item-choice button-time__item-choice--apply">Apply</button>
+										<button id="cancelTimeBtn" class="button-time__item-choice button-time__item-choice--cancel">Cancel</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-page__input-wrap">
+								<input id="partySizeBookTable" type="text" class="form-page__input form-page__input--test party-size-message" name="book-a-table-time" placeholder="Enter the number of guests" required autocomplete="off" min="1" max="100">
+								<div id="partySizeMessage" class="message"></div>
+							</div>
+
+							<button type="submit" id="btnBookATable" class="form-page__btn-reservation" data-popup="#popupreserv">Book now</button>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+		</main>
+		<footer class="footer footer--setup">
+			<div class="footer__container">
+
+				<div class="footer__body body">
+
+					<div class="body__up-level column">
+
+						<section class="column__info-box info-box">
+
+							<div class="info-box__wrap-logo">
+								<img src="img/logo.svg" alt="Logo Delizioso" class="info-box__company-logo">
+								<h1 class="info-box__inscription">Delizi<i class="info-box__accent">oso</i></h1>
+							</div>
+
+							<div class="info-box__paragraph">
+								<p>Viverra gravida morbi egestas facilisis tortor netus non duis tempor.</p>
+							</div>
+
+							<ul class="info-box__social">
+								<li class="info-box__label"><a href="https://web.telegram.org/" class="info-box__icon" target="_blank" title="Telegram">f</a></li>
+								<li class="info-box__label"><a href="https://www.instagram.com/" class="info-box__icon" target="_blank" title="Instagram">g</a></li>
+								<li class="info-box__label" title="Facebook"><a href="https://www.facebook.com/" class="info-box__icon" target="_blank">h</a></li>
+							</ul>
+						</section>
+
+						<div class="column__link-content link-content">
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Page</h2>
+								<ul class="cell__list">
+									<li class="cell__item"><a href="index.html" class="cell__link-jump">Home</a></li>
+									<li class="cell__item"><a href="menu.html" class="cell__link-jump">Menu</a></li>
+									<li class="cell__item"><a href="order_online.html" class="cell__link-jump">Order online</a></li>
+									<li class="cell__item"><a href="catering.html" class="cell__link-jump">Catering</a></li>
+									<li class="cell__item"><a href="reservation.html" class="cell__link-jump">Reservation</a></li>
+								</ul>
+							</article>
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Information</h2>
+								<ul class="cell__list">
+									<li class="cell__item"><a href="about_us.html" class="cell__link-jump">About us</a></li>
+									<li class="cell__item"><a href="#" class="cell__link-jump">Testimonial</a></li>
+									<li class="cell__item"><a href="order_online.html" class="cell__link-jump">Order online</a></li>
+									<li class="cell__item"><a href="#" class="cell__link-jump">Event</a></li>
+								</ul>
+							</article>
+
+							<article class="link-content__cell cell">
+								<h2 class="cell__title">Get in touch</h2>
+								<ul class="cell__list">
+									<li class="cell__address-item">3247 Johnson Ave, Bronx, NY 10463, Amerika Serikat</li>
+									<li class="cell__contact-item"><a href="delizioso@gmail.com" class="cell__link-contact">delizioso@gmail.com</a></li>
+									<li class="cell__contact-item"><a href="tel:12345678901" class="cell__link-contact">+123 4567 8901</a></li>
+								</ul>
+							</article>
+
+						</div>
+
+					</div>
+
+					<div class="body__down-level">Copyright &copy; 2022 Delizioso</div>
+
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="js/app.min.js?_v=20241117185013"></script>
+</body>
+
+</html>
