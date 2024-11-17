@@ -7742,7 +7742,7 @@ button:focus-visible {
     cursor: pointer
   }
   .cell__item:hover {
-    color: var(--bgFnHoverItem)
+    color: var(--bgFnOtherItem)
   }
   .cell__contact-item {
     cursor: pointer
