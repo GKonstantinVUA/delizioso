@@ -1226,7 +1226,7 @@
                 let ratingItems = ``;
                 for (let index = 0; index < ratingSize; index++) {
                     index === 0 ? ratingItems += `<div class="rating__items">` : null;
-                    ratingItems += `\n\t\t\t\t<label class="rating__item" arial-label="rating">\n\t\t\t\t\t<input arial-label="rating" class="rating__input" type="radio" name="rating" value="${index + 1}">\n\t\t\t\t</label>`;
+                    ratingItems += `\n\t\t\t\t<label class="rating__item" aria-label="rating">\n\t\t\t\t\t<input aria-label="rating" class="rating__input" type="radio" name="rating" value="${index + 1}">\n\t\t\t\t</label>`;
                     index === ratingSize ? ratingItems += `</div">` : null;
                 }
                 rating.insertAdjacentHTML("beforeend", ratingItems);
